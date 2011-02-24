@@ -17,7 +17,8 @@ namespace UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(IndexModel indexModel)
+        public ActionResult Index(
+            IndexModel indexModel)
         {
             if (!ModelState.IsValid)
             {

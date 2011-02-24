@@ -9,6 +9,10 @@ namespace UI.Models
         public MembershipOptionModel[] MembershipOptions;
 
         [Required]
+        [Display(Name = "Membership Option")]
+        public string SelectedMembershipOption { get; set; }
+
+        [Required]
         [DataType(DataType.Text)]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -26,7 +30,8 @@ namespace UI.Models
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Date of Birth")]
-        public DateTime DateOfBirth { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime? DateOfBirth { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

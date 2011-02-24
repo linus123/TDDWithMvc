@@ -16,10 +16,11 @@
 
    foreach (var membershipOption in Model.MembershipOptions)
    {
-        @Html.RadioButton("membershipOption", membershipOption.Id)
+        @Html.RadioButton("SelectedMembershipOption", membershipOption.Id, membershipOption.IsSelected)
         @membershipOption.Name
         <br />
    }   
+        @Html.ValidationMessageFor(m => m.SelectedMembershipOption)
 
         <div class="editor-label">
             @Html.LabelFor(m => m.FirstName)
@@ -49,7 +50,7 @@
             @Html.LabelFor(m => m.DateOfBirth)
         </div>
         <div class="editor-field">
-            @Html.TextBoxFor(m => m.DateOfBirth)
+            @Html.EditorFor(m => m.DateOfBirth)
             @Html.ValidationMessageFor(m => m.DateOfBirth)
         </div>
 

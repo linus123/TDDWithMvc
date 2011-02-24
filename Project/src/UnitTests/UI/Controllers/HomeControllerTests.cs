@@ -117,7 +117,7 @@ namespace UnitTests.UI.Controllers
 
             SetModelStateOfContorllerAsInvalid();
 
-            var actionResult = _homeController.Index(indexModel);
+            _homeController.Index(indexModel);
 
             AssertThatModelHasCorrectMemberships(indexModel);
             AsserThatModelHasCorrectCreditCardTypes(indexModel);
