@@ -16,22 +16,14 @@ namespace UI.Controllers
             return View(indexModel);
         }
 
-        //[HttpPost]
-        //public ViewResult Index(IndexModel indexModel)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        indexModel.MembershipOptions = GetMembershipOptionModels();
-        //        indexModel.CreditCardTypes = GetCreditCardTypes();
-        //        return View(indexModel);
-        //    }
-
-        //    return View(indexModel);
-        //}
-
         [HttpPost]
         public ActionResult Index(IndexModel indexModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(indexModel);
+            }
+
             return RedirectToAction("OrderSaved");
         }
 

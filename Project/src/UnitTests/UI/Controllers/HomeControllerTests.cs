@@ -1,3 +1,4 @@
+using System;
 using System.Web.Mvc;
 using NUnit.Framework;
 using UI.Controllers;
@@ -73,6 +74,23 @@ namespace UnitTests.UI.Controllers
 
             Assert.That(redirectResult.RouteValues["action"],
                 Is.EqualTo("OrderSaved"));
+        }
+
+        [Test]
+        public void IndexShouldReturnTheSaveViewWhenModelIsInValid()
+        {
+            var indexModel = new IndexModel();
+
+            _homeController.ModelState.AddModelError(
+                "firstError", "firstError");
+
+            var actionResult = _homeController.Index(indexModel);
+
+            Assert.That(actionResult, Is.TypeOf(typeof(ViewResult)));
+
+            var viewResult = (ViewResult)actionResult;
+
+            Assert.That(viewResult.ViewName, Is.EqualTo(""));
         }
 
         [Test]
