@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using UI.Models;
 
 namespace UI.Controllers
@@ -15,18 +16,18 @@ namespace UI.Controllers
             return View(indexModel);
         }
 
-        [HttpPost]
-        public ViewResult Index(IndexModel indexModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                indexModel.MembershipOptions = GetMembershipOptionModels();
-                indexModel.CreditCardTypes = GetCreditCardTypes();
-                return View(indexModel);
-            }
+        //[HttpPost]
+        //public ViewResult Index(IndexModel indexModel)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        indexModel.MembershipOptions = GetMembershipOptionModels();
+        //        indexModel.CreditCardTypes = GetCreditCardTypes();
+        //        return View(indexModel);
+        //    }
 
-            return View(indexModel);
-        }
+        //    return View(indexModel);
+        //}
 
         private SelectListItem[] GetCreditCardTypes()
         {
@@ -51,6 +52,11 @@ namespace UI.Controllers
         }
 
         public ViewResult About()
+        {
+            return View();
+        }
+
+        public ViewResult OrderSaved()
         {
             return View();
         }

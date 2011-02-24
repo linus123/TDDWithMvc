@@ -55,6 +55,16 @@ namespace UnitTests.UI.Controllers
             Assert.That(indexModel.CreditCardTypes[2].Text, Is.EqualTo("American Express"));
             Assert.That(indexModel.CreditCardTypes[2].Selected, Is.EqualTo(false));
         }
+
+        [Test]
+        public void OrderSavedShouldReturnTheDefaultView()
+        {
+            var homeController = new HomeController();
+
+            var viewResult = homeController.OrderSaved();
+
+            Assert.That(viewResult.ViewName, Is.EqualTo(""));
+        }
     }
 }
 

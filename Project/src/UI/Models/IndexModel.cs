@@ -26,7 +26,7 @@ namespace UI.Models
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Date of Birth")]
-        public string DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         [Required]
         [DataType(DataType.Text)]
@@ -35,7 +35,7 @@ namespace UI.Models
 
         [Required]
         [Display(Name = "Type")]
-        public SelectListItem SelectedCreditCardType { get; set; }
+        public string SelectedCreditCardType { get; set; }
 
         public SelectListItem[] CreditCardTypes { get; set; }
     }
