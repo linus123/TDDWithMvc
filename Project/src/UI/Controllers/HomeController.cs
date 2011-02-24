@@ -21,6 +21,9 @@ namespace UI.Controllers
         {
             if (!ModelState.IsValid)
             {
+                indexModel.MembershipOptions = GetMembershipOptionModels();
+                indexModel.CreditCardTypes = GetCreditCardTypes();
+
                 return View(indexModel);
             }
 

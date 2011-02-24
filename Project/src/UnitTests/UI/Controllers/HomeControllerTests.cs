@@ -27,6 +27,12 @@ namespace UnitTests.UI.Controllers
 
             var indexModel = (IndexModel)viewResult.Model;
 
+            AssertThatModelHasCorrectMemberships(indexModel);
+        }
+
+        private void AssertThatModelHasCorrectMemberships(
+            IndexModel indexModel)
+        {
             Assert.That(indexModel.MembershipOptions, Is.Not.Null);
 
             Assert.That(indexModel.MembershipOptions[0].Id, Is.EqualTo(0));
@@ -46,6 +52,12 @@ namespace UnitTests.UI.Controllers
 
             var indexModel = (IndexModel)viewResult.Model;
 
+            AsserThatModelHasCorrectCreditCardTypes(indexModel);
+        }
+
+        private void AsserThatModelHasCorrectCreditCardTypes(
+            IndexModel indexModel)
+        {
             Assert.That(indexModel.MembershipOptions.Length, Is.EqualTo(3));
 
             Assert.That(indexModel.CreditCardTypes[0].Value, Is.EqualTo(""));
@@ -81,8 +93,7 @@ namespace UnitTests.UI.Controllers
         {
             var indexModel = new IndexModel();
 
-            _homeController.ModelState.AddModelError(
-                "firstError", "firstError");
+            SetModelStateOfContorllerAsInvalid();
 
             var actionResult = _homeController.Index(indexModel);
 
@@ -91,6 +102,25 @@ namespace UnitTests.UI.Controllers
             var viewResult = (ViewResult)actionResult;
 
             Assert.That(viewResult.ViewName, Is.EqualTo(""));
+        }
+
+        private void SetModelStateOfContorllerAsInvalid()
+        {
+            _homeController.ModelState.AddModelError(
+                "firstError", "firstError");
+        }
+
+        [Test]
+        public void IndexShouldSetTheMembershipOptionsAndCreditCardOptionsOnTheModelWhenInvalid()
+        {
+            var indexModel = new IndexModel();
+
+            SetModelStateOfContorllerAsInvalid();
+
+            var actionResult = _homeController.Index(indexModel);
+
+            AssertThatModelHasCorrectMemberships(indexModel);
+            AsserThatModelHasCorrectCreditCardTypes(indexModel);
         }
 
         [Test]
