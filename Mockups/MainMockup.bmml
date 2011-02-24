@@ -1,0 +1,92 @@
+<mockup version="1.0" skin="sketch" measuredW="438" measuredH="460" mockupW="386" mockupH="427">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::RadioButton" x="77" y="75" w="-1" h="-1" measuredW="266" measuredH="22" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Highfaluting%20Membership%201%20Year%20-%20%2499</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::RadioButton" x="77" y="112" w="-1" h="-1" measuredW="282" measuredH="22" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Highfaluting%20Membership%202%20Years%20-%20%24198</text>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::RadioButton" x="77" y="149" w="-1" h="-1" measuredW="276" measuredH="22" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Highfaluting%20Membership%203%20Year%20-%20%24259</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Label" x="42" y="23" w="-1" h="-1" measuredW="194" measuredH="29" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>16</size>
+        <text>Highfaluting%20Travel%20Club</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="42" y="205" w="139" h="25" measuredW="82" measuredH="25" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>First%20Name%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="196" y="202" w="232" h="-1" measuredW="79" measuredH="29" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Label" x="42" y="240" w="139" h="25" measuredW="78" measuredH="25" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>Last%20Name%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::TextInput" x="196" y="237" w="232" h="-1" measuredW="79" measuredH="29" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Label" x="42" y="311" w="139" h="25" measuredW="97" measuredH="25" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>Date%20of%20Birth%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::DateChooser" x="196" y="308" w="232" h="-1" measuredW="106" measuredH="29" zOrder="9" locked="false" isInGroup="-1"/>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::Button" x="295" y="422" w="133" h="28" measuredW="49" measuredH="28" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Join</text>
+      </controlProperties>
+    </control>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="42" y="347" w="139" h="25" measuredW="138" measuredH="25" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>Credit%20Card%20Number%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::TextInput" x="196" y="344" w="232" h="-1" measuredW="79" measuredH="29" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Label" x="42" y="382" w="139" h="25" measuredW="76" measuredH="25" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>Card%20Type%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="26" controlTypeID="com.balsamiq.mockups::ComboBox" x="196" y="381" w="232" h="-1" measuredW="32" measuredH="24" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Label" x="42" y="275" w="139" h="25" measuredW="100" measuredH="25" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <align>right</align>
+        <text>Email%20Address%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::TextInput" x="196" y="272" w="232" h="-1" measuredW="79" measuredH="29" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

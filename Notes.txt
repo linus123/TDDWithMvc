@@ -1,0 +1,20 @@
+3 Types of testing
+
+Red Gree Refactor
+
+Testing Controllers
+Testing Routes
+Dependency Injection
+	Mocking
+
+
+Process
+- Red
+- Green
+- Refactor
+
+-- Path
+Add NUnit with NuGet
+Convert Returns to ViewResult
+Add Test for Membership Options
+Make it complile
