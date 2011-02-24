@@ -8,12 +8,18 @@ namespace UnitTests.UI.Controllers
     [TestFixture]
     public class HomeControllerTests
     {
+        private HomeController _homeController;
+
+        [SetUp]
+        public void Setup()
+        {
+            _homeController = new HomeController();
+        }
+
         [Test]
         public void IndexShouldReturnTheMembershipOptions()
         {
-            var homeController = new HomeController();
-
-            var viewResult = homeController.Index();
+            var viewResult = _homeController.Index();
 
             Assert.That(viewResult.ViewName, Is.EqualTo(""));
             Assert.That(viewResult.Model, Is.TypeOf(typeof(IndexModel)));
@@ -35,9 +41,7 @@ namespace UnitTests.UI.Controllers
         [Test]
         public void IndexShouldReturnCreditCardTypes()
         {
-            var homeController = new HomeController();
-
-            var viewResult = homeController.Index();
+            var viewResult = _homeController.Index();
 
             var indexModel = (IndexModel)viewResult.Model;
 
@@ -57,11 +61,24 @@ namespace UnitTests.UI.Controllers
         }
 
         [Test]
+        public void IndexShouldRedirectToTheOrderSavedViewWhenModelIsValid()
+        {
+            var indexModel = new IndexModel();
+
+            var actionResult = _homeController.Index(indexModel);
+
+            Assert.That(actionResult, Is.TypeOf(typeof(RedirectToRouteResult)));
+
+            var redirectResult = (RedirectToRouteResult)actionResult;
+
+            Assert.That(redirectResult.RouteValues["action"],
+                Is.EqualTo("OrderSaved"));
+        }
+
+        [Test]
         public void OrderSavedShouldReturnTheDefaultView()
         {
-            var homeController = new HomeController();
-
-            var viewResult = homeController.OrderSaved();
+            var viewResult = _homeController.OrderSaved();
 
             Assert.That(viewResult.ViewName, Is.EqualTo(""));
         }

@@ -29,6 +29,12 @@ namespace UI.Controllers
         //    return View(indexModel);
         //}
 
+        [HttpPost]
+        public ActionResult Index(IndexModel indexModel)
+        {
+            return RedirectToAction("OrderSaved");
+        }
+
         private SelectListItem[] GetCreditCardTypes()
         {
             var selectListItems = new SelectListItem[3];
@@ -51,12 +57,12 @@ namespace UI.Controllers
             return membershipOptionModels1;
         }
 
-        public ViewResult About()
+        public ViewResult OrderSaved()
         {
             return View();
         }
 
-        public ViewResult OrderSaved()
+        public ViewResult About()
         {
             return View();
         }
