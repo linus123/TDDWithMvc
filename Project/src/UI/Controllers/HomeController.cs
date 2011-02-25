@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using DataAccess;
+using UI.Helpers.Mappers;
 using UI.Models;
 
 namespace UI.Controllers
@@ -46,24 +46,11 @@ namespace UI.Controllers
 
         private MembershipOptionModel[] GetMembershipOptionModels()
         {
-            var membershipOptionModels = new List<MembershipOptionModel>();
-
             var orderRepository = new OrderRepository();
-
             var allActiveMembershipOffers = orderRepository.GetAllActiveMembershipOffers();
 
-            foreach (var allActiveMembershipOffer in allActiveMembershipOffers)
-            {
-                var membershipOptionModel = new MembershipOptionModel
-                    {
-                        Id = allActiveMembershipOffer.Id,
-                        Name = (allActiveMembershipOffer.ExternalName + " - " + allActiveMembershipOffer.Price.ToString("$###,###,##0"))
-                    };
-
-                membershipOptionModels.Add(membershipOptionModel);
-            }
-
-            return membershipOptionModels.ToArray();
+            var indexModelMapper = new IndexModelMapper();
+            return indexModelMapper.MapDomainToModels(allActiveMembershipOffers);
         }
 
         public ViewResult OrderSaved()
