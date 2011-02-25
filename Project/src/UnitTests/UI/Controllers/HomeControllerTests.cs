@@ -42,7 +42,7 @@ namespace UnitTests.UI.Controllers
             Assert.That(indexModel.MembershipOptions[1].Name, Is.EqualTo("Highfaluting Membership 2 Years - $198"));
 
             Assert.That(indexModel.MembershipOptions[2].Id, Is.EqualTo(2));
-            Assert.That(indexModel.MembershipOptions[2].Name, Is.EqualTo("Highfaluting Membership 3 Year - $259"));
+            Assert.That(indexModel.MembershipOptions[2].Name, Is.EqualTo("Highfaluting Membership 3 Years - $259"));
         }
 
         [Test]

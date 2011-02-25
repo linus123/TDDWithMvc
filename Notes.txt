@@ -18,3 +18,5 @@ Add NUnit with NuGet
 Convert Returns to ViewResult
 Add Test for Membership Options
 Make it complile
+
+Assume Fixed Database

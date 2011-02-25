@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using DataAccess;
 using UI.Models;
 
 namespace UI.Controllers
@@ -44,13 +46,24 @@ namespace UI.Controllers
 
         private MembershipOptionModel[] GetMembershipOptionModels()
         {
-            var membershipOptionModels1 = new MembershipOptionModel[3];
+            var membershipOptionModels = new List<MembershipOptionModel>();
 
-            membershipOptionModels1[0] = new MembershipOptionModel { Id = 0, Name = "Highfaluting Membership 1 Year - $99" };
-            membershipOptionModels1[1] = new MembershipOptionModel { Id = 1, Name = "Highfaluting Membership 2 Years - $198" };
-            membershipOptionModels1[2] = new MembershipOptionModel { Id = 2, Name = "Highfaluting Membership 3 Year - $259" };
+            var orderRepository = new OrderRepository();
 
-            return membershipOptionModels1;
+            var allActiveMembershipOffers = orderRepository.GetAllActiveMembershipOffers();
+
+            foreach (var allActiveMembershipOffer in allActiveMembershipOffers)
+            {
+                var membershipOptionModel = new MembershipOptionModel
+                    {
+                        Id = allActiveMembershipOffer.Id,
+                        Name = (allActiveMembershipOffer.ExternalName + " - " + allActiveMembershipOffer.Price.ToString("$###,###,##0"))
+                    };
+
+                membershipOptionModels.Add(membershipOptionModel);
+            }
+
+            return membershipOptionModels.ToArray();
         }
 
         public ViewResult OrderSaved()
