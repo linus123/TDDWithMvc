@@ -20,3 +20,7 @@ Add Test for Membership Options
 Make it complile
 
 Assume Fixed Database
+- List Database Fix Technology
+	Tarantino
+	Ndbunit
+	
