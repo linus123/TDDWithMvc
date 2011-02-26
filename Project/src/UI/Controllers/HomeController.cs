@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Core.Domain;
 using DataAccess;
 using UI.Helpers.Mappers;
 using UI.Models;
@@ -35,13 +36,12 @@ namespace UI.Controllers
 
         private SelectListItem[] GetCreditCardTypes()
         {
-            var selectListItems = new SelectListItem[3];
+            var creditCards = CreditCard.GetAll();
 
-            selectListItems[0] = new SelectListItem() { Value = "", Text = "-- Select Item --", Selected = true };
-            selectListItems[1] = new SelectListItem() { Value = "VISA", Text = "Visa" };
-            selectListItems[2] = new SelectListItem() { Value = "AMEX", Text = "American Express" };
+            var creditCardListItemMapper = new CreditCardListItemMapper();
+            var listItems = creditCardListItemMapper.MapCreditCardsToListItems(creditCards);
 
-            return selectListItems;
+            return listItems;
         }
 
         private MembershipOptionModel[] GetMembershipOptionModels()

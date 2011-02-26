@@ -25,5 +25,14 @@ namespace Core.Domain
         {
             get { return _code; }
         }
+
+        public static CreditCard[] GetAll()
+        {
+            return new []
+            {
+                Visa,
+                AmericanExpress
+            };
+        }
     }
 }
