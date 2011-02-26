@@ -15,7 +15,7 @@ namespace DataAccess
         {
             var membershipOffer000 = new MembershipOffer();
 
-            membershipOffer000.Id = 0;
+            membershipOffer000.Id = 1;
             membershipOffer000.InternalName = "MEM53158813";
             membershipOffer000.ExternalName = "Highfaluting Membership 1 Year";
             membershipOffer000.DiscountPrice = 59;
@@ -26,7 +26,7 @@ namespace DataAccess
 
             var membershipOffer001 = new MembershipOffer();
 
-            membershipOffer001.Id = 1;
+            membershipOffer001.Id = 2;
             membershipOffer001.InternalName = "MEM0876443";
             membershipOffer001.ExternalName = "Highfaluting Membership 2 Years";
             membershipOffer001.DiscountPrice = 159;
@@ -37,7 +37,7 @@ namespace DataAccess
 
             var membershipOffer002 = new MembershipOffer();
 
-            membershipOffer002.Id = 2;
+            membershipOffer002.Id = 3;
             membershipOffer002.InternalName = "MEM6235499";
             membershipOffer002.ExternalName = "Highfaluting Membership 3 Years";
             membershipOffer002.DiscountPrice = 209;

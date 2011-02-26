@@ -35,13 +35,13 @@ namespace UnitTests.UI.Controllers
         {
             Assert.That(indexModel.MembershipOptions, Is.Not.Null);
 
-            Assert.That(indexModel.MembershipOptions[0].Id, Is.EqualTo(0));
+            Assert.That(indexModel.MembershipOptions[0].Id, Is.EqualTo(1));
             Assert.That(indexModel.MembershipOptions[0].Name, Is.EqualTo("Highfaluting Membership 1 Year - $99"));
 
-            Assert.That(indexModel.MembershipOptions[1].Id, Is.EqualTo(1));
+            Assert.That(indexModel.MembershipOptions[1].Id, Is.EqualTo(2));
             Assert.That(indexModel.MembershipOptions[1].Name, Is.EqualTo("Highfaluting Membership 2 Years - $198"));
 
-            Assert.That(indexModel.MembershipOptions[2].Id, Is.EqualTo(2));
+            Assert.That(indexModel.MembershipOptions[2].Id, Is.EqualTo(3));
             Assert.That(indexModel.MembershipOptions[2].Name, Is.EqualTo("Highfaluting Membership 3 Years - $259"));
         }
 

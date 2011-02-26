@@ -1,20 +1,24 @@
 ﻿using System;
 using System.Web.Mvc;
-using Core.Domain;
-using DataAccess;
-using UI.Helpers.Mappers;
+using UI.Helpers;
 using UI.Models;
 
 namespace UI.Controllers
 {
     public class HomeController : Controller
     {
+        private IndexModelHydrator _indexModelHydrator;
+
+        public HomeController()
+        {
+            _indexModelHydrator = new IndexModelHydrator();
+        }
+
         public ViewResult Index()
         {
             var indexModel = new IndexModel();
 
-            indexModel.MembershipOptions = GetMembershipOptionModels();
-            indexModel.CreditCardTypes = GetCreditCardTypes();
+            _indexModelHydrator.HydrateIndexModel(indexModel);
 
             return View(indexModel);
         }
@@ -25,32 +29,12 @@ namespace UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                indexModel.MembershipOptions = GetMembershipOptionModels();
-                indexModel.CreditCardTypes = GetCreditCardTypes();
+                _indexModelHydrator.HydrateIndexModel(indexModel);
 
                 return View(indexModel);
             }
 
             return RedirectToAction("OrderSaved");
-        }
-
-        private SelectListItem[] GetCreditCardTypes()
-        {
-            var creditCards = CreditCard.GetAll();
-
-            var creditCardListItemMapper = new CreditCardListItemMapper();
-            var listItems = creditCardListItemMapper.MapCreditCardsToListItems(creditCards);
-
-            return listItems;
-        }
-
-        private MembershipOptionModel[] GetMembershipOptionModels()
-        {
-            var orderRepository = new OrderRepository();
-            var allActiveMembershipOffers = orderRepository.GetAllActiveMembershipOffers();
-
-            var indexModelMapper = new IndexModelMapper();
-            return indexModelMapper.MapDomainToModels(allActiveMembershipOffers);
         }
 
         public ViewResult OrderSaved()
