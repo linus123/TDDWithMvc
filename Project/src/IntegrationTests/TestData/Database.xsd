@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Database" targetNamespace="http://tempuri.org/Database.xsd" xmlns:mstns="http://tempuri.org/Database.xsd" xmlns="http://tempuri.org/Database.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TDDWithMVCConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TDDWithMVCConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.IntegrationTests.Properties.Settings.GlobalReference.Default.TDDWithMVCConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Database" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Database" msprop:Generator_UserDSName="Database">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MembershipOffer" msprop:Generator_TableClassName="MembershipOfferDataTable" msprop:Generator_TableVarName="tableMembershipOffer" msprop:Generator_TablePropName="MembershipOffer" msprop:Generator_RowDeletingName="MembershipOfferRowDeleting" msprop:Generator_UserTableName="MembershipOffer" msprop:Generator_RowChangingName="MembershipOfferRowChanging" msprop:Generator_RowEvHandlerName="MembershipOfferRowChangeEventHandler" msprop:Generator_RowDeletedName="MembershipOfferRowDeleted" msprop:Generator_RowEvArgName="MembershipOfferRowChangeEvent" msprop:Generator_RowChangedName="MembershipOfferRowChanged" msprop:Generator_RowClassName="MembershipOfferRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="InternalName" msprop:Generator_ColumnVarNameInTable="columnInternalName" msprop:Generator_ColumnPropNameInRow="InternalName" msprop:Generator_ColumnPropNameInTable="InternalNameColumn" msprop:Generator_UserColumnName="InternalName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ExternalName" msprop:Generator_ColumnVarNameInTable="columnExternalName" msprop:Generator_ColumnPropNameInRow="ExternalName" msprop:Generator_ColumnPropNameInTable="ExternalNameColumn" msprop:Generator_UserColumnName="ExternalName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" />
+              <xs:element name="DiscountPrice" msprop:Generator_ColumnVarNameInTable="columnDiscountPrice" msprop:Generator_ColumnPropNameInRow="DiscountPrice" msprop:Generator_ColumnPropNameInTable="DiscountPriceColumn" msprop:Generator_UserColumnName="DiscountPrice" type="xs:decimal" />
+              <xs:element name="IsActive" msprop:Generator_ColumnVarNameInTable="columnIsActive" msprop:Generator_ColumnPropNameInRow="IsActive" msprop:Generator_ColumnPropNameInTable="IsActiveColumn" msprop:Generator_UserColumnName="IsActive" type="xs:boolean" />
+              <xs:element name="TermInMonths" msprop:Generator_ColumnVarNameInTable="columnTermInMonths" msprop:Generator_ColumnPropNameInRow="TermInMonths" msprop:Generator_ColumnPropNameInTable="TermInMonthsColumn" msprop:Generator_UserColumnName="TermInMonths" type="xs:int" />
+              <xs:element name="TermInYears" msprop:Generator_ColumnVarNameInTable="columnTermInYears" msprop:Generator_ColumnPropNameInRow="TermInYears" msprop:Generator_ColumnPropNameInTable="TermInYearsColumn" msprop:Generator_UserColumnName="TermInYears" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MembershipOffer" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

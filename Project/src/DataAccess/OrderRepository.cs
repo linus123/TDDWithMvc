@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Core.Domain;
 using Core.Services;
+using WebMatrix.Data;
 
 namespace DataAccess
 {
@@ -13,46 +15,31 @@ namespace DataAccess
 
         public MembershipOffer[] GetAllActiveMembershipOffers()
         {
-            var membershipOffer000 = new MembershipOffer();
+            var membershipOffers = new List<MembershipOffer>();
 
-            membershipOffer000.Id = 1;
-            membershipOffer000.InternalName = "MEM53158813";
-            membershipOffer000.ExternalName = "Highfaluting Membership 1 Year";
-            membershipOffer000.DiscountPrice = 59;
-            membershipOffer000.Price = 99;
-            membershipOffer000.IsActive = true;
-            membershipOffer000.TermInMonths = 12;
-            membershipOffer000.TermInYears = 1;
+            var database000 = Database.Open("IntegrationTests.Properties.Settings.TDDWithMVCConnectionString");
 
-            var membershipOffer001 = new MembershipOffer();
+            var membershipOfferDatas = database000.Query("SELECT * FROM MembershipOffer");
 
-            membershipOffer001.Id = 2;
-            membershipOffer001.InternalName = "MEM0876443";
-            membershipOffer001.ExternalName = "Highfaluting Membership 2 Years";
-            membershipOffer001.DiscountPrice = 159;
-            membershipOffer001.Price = 198;
-            membershipOffer001.IsActive = true;
-            membershipOffer001.TermInMonths = 36;
-            membershipOffer001.TermInYears = 3;
+            foreach (var membershipOfferData in membershipOfferDatas)
+            {
+                var membershipOffer = new MembershipOffer();
 
-            var membershipOffer002 = new MembershipOffer();
+                membershipOffer.Id = membershipOfferData.Id;
+                membershipOffer.InternalName = membershipOfferData.InternalName;
+                membershipOffer.ExternalName = membershipOfferData.ExternalName;
+                membershipOffer.DiscountPrice = membershipOfferData.DiscountPrice;
+                membershipOffer.Price = membershipOfferData.Price;
+                membershipOffer.IsActive = membershipOfferData.IsActive;
+                membershipOffer.TermInMonths = membershipOfferData.TermInMonths;
+                membershipOffer.TermInYears = membershipOfferData.TermInYears;
 
-            membershipOffer002.Id = 3;
-            membershipOffer002.InternalName = "MEM6235499";
-            membershipOffer002.ExternalName = "Highfaluting Membership 3 Years";
-            membershipOffer002.DiscountPrice = 209;
-            membershipOffer002.Price = 259;
-            membershipOffer002.IsActive = true;
-            membershipOffer002.TermInMonths = 12;
-            membershipOffer002.TermInYears = 1;
+                membershipOffers.Add(membershipOffer);
+            }
 
-            var membershipOffers = new MembershipOffer[3];
+            database000.Close();
 
-            membershipOffers[0] = membershipOffer000;
-            membershipOffers[1] = membershipOffer001;
-            membershipOffers[2] = membershipOffer002;
-
-            return membershipOffers;
+            return membershipOffers.ToArray();
         }
 
         public MembershipOffer[] SerachMembershipOffers(string searchString)

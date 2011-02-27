@@ -1,10 +1,10 @@
 using DataAccess;
 using NUnit.Framework;
 
-namespace IntegrationTests
+namespace IntegrationTests.DataAccess
 {
     [TestFixture]
-    public class OrderRepositoryTests
+    public class OrderRepositoryTests : BaseDataTester
     {
         private OrderRepository _orderRepository;
 

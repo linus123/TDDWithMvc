@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="yes"?>
+<Database xmlns="http://tempuri.org/Database.xsd">
+  <MembershipOffer>
+    <Id>1</Id>
+    <InternalName>MEM53158813</InternalName>
+    <ExternalName>Highfaluting Membership 1 Year</ExternalName>
+    <Price>99.0000</Price>
+    <DiscountPrice>59.0000</DiscountPrice>
+    <IsActive>true</IsActive>
+    <TermInMonths>12</TermInMonths>
+    <TermInYears>1</TermInYears>
+  </MembershipOffer>
+  <MembershipOffer>
+    <Id>2</Id>
+    <InternalName>MEM0876443</InternalName>
+    <ExternalName>Highfaluting Membership 2 Years</ExternalName>
+    <Price>198.0000</Price>
+    <DiscountPrice>159.0000</DiscountPrice>
+    <IsActive>true</IsActive>
+    <TermInMonths>36</TermInMonths>
+    <TermInYears>3</TermInYears>
+  </MembershipOffer>
+  <MembershipOffer>
+    <Id>3</Id>
+    <InternalName>MEM6235499</InternalName>
+    <ExternalName>Highfaluting Membership 3 Years</ExternalName>
+    <Price>259.0000</Price>
+    <DiscountPrice>209.0000</DiscountPrice>
+    <IsActive>true</IsActive>
+    <TermInMonths>12</TermInMonths>
+    <TermInYears>1</TermInYears>
+  </MembershipOffer>
+</Database>

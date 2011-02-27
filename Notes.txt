@@ -23,4 +23,5 @@ Assume Fixed Database
 - List Database Fix Technology
 	Tarantino
 	Ndbunit
-	
+
+Explain what a unit test is... Is not an integration test
