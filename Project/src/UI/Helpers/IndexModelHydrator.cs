@@ -1,5 +1,6 @@
 using System.Web.Mvc;
 using Core.Domain;
+using Core.Services;
 using DataAccess;
 using UI.Helpers.Mappers;
 using UI.Models;
@@ -8,6 +9,14 @@ namespace UI.Helpers
 {
     public class IndexModelHydrator
     {
+        private IOrderRepository _orderRepository;
+
+        public IndexModelHydrator(
+            IOrderRepository orderRepository)
+        {
+            _orderRepository = orderRepository;
+        }
+
         public void HydrateIndexModel(
             IndexModel indexModel)
         {
@@ -27,8 +36,7 @@ namespace UI.Helpers
 
         private MembershipOptionModel[] GetMembershipOptionModels()
         {
-            var orderRepository = new OrderRepository();
-            var allActiveMembershipOffers = orderRepository.GetAllActiveMembershipOffers();
+            var allActiveMembershipOffers = _orderRepository.GetAllActiveMembershipOffers();
 
             var indexModelMapper = new IndexModelMapper();
             return indexModelMapper.MapDomainToModels(allActiveMembershipOffers);

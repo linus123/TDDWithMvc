@@ -14,7 +14,9 @@ namespace UnitTests.UI.Controllers
         [SetUp]
         public void Setup()
         {
-            _homeController = new HomeController();
+
+            _homeController = new HomeController(
+                new OrderRepositoryFake());
         }
 
         [Test]

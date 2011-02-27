@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
+using Core.Services;
+using DataAccess;
 using UI.Helpers;
 using UI.Models;
 
@@ -8,10 +10,21 @@ namespace UI.Controllers
     public class HomeController : Controller
     {
         private IndexModelHydrator _indexModelHydrator;
+        private IOrderRepository _orderRepository;
 
         public HomeController()
         {
-            _indexModelHydrator = new IndexModelHydrator();
+            _orderRepository = new OrderRepository();
+
+            _indexModelHydrator = new IndexModelHydrator(
+                _orderRepository);
+        }
+
+        public HomeController(
+            IOrderRepository orderRepository)
+        {
+            _indexModelHydrator = new IndexModelHydrator(
+                orderRepository);
         }
 
         public ViewResult Index()
