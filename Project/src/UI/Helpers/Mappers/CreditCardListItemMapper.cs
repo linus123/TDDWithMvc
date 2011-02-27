@@ -7,14 +7,14 @@ namespace UI.Helpers.Mappers
     public class CreditCardListItemMapper
     {
         public SelectListItem[] MapCreditCardsToListItems(
-            CreditCard[] creditCards)
+            CreditCardType[] creditCardsType)
         {
             var listItems = new List<SelectListItem>();
 
             var selectItemEntry = new SelectListItem() { Value = "", Text = "-- Select Item --", Selected = true };
             listItems.Add(selectItemEntry);
 
-            foreach (var creditCard in creditCards)
+            foreach (var creditCard in creditCardsType)
             {
                 var selectListItem = new SelectListItem() { Value = creditCard.Code, Text = creditCard.Name };
                 listItems.Add(selectListItem);

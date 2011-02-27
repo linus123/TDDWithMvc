@@ -26,7 +26,7 @@ namespace UI.Helpers
 
         private SelectListItem[] GetCreditCardTypes()
         {
-            var creditCards = CreditCard.GetAll();
+            var creditCards = CreditCardType.GetAll();
 
             var creditCardListItemMapper = new CreditCardListItemMapper();
             var listItems = creditCardListItemMapper.MapCreditCardsToListItems(creditCards);

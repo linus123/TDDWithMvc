@@ -1,5 +1,8 @@
+using System;
+using Core.Domain;
 using DataAccess;
 using NUnit.Framework;
+using WebMatrix.Data;
 
 namespace IntegrationTests.DataAccess
 {
@@ -47,6 +50,43 @@ namespace IntegrationTests.DataAccess
             Assert.That(allActiveMembershipOffers[2].IsActive, Is.EqualTo(true));
             Assert.That(allActiveMembershipOffers[2].TermInMonths, Is.EqualTo(12));
             Assert.That(allActiveMembershipOffers[2].TermInYears, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void SaveMembershipOrderShouldPersistAnOrderAndReturnTheId()
+        {
+            var membershipOffer = new MembershipOffer();
+
+            membershipOffer.Id = 1;
+
+            var membershipOrder = new MembershipOrder();
+
+            membershipOrder.FirstName = "firstname";
+            membershipOrder.LastName = "lastname";
+            membershipOrder.EmailAddress = "test@foo.com";
+            membershipOrder.DateOfBirth = new DateTime(1980, 1, 1);
+            membershipOrder.CreditCardNumber = "4444444444444";
+            membershipOrder.CreditCardType = CreditCardType.Visa;
+            membershipOrder.MembershipOffer = membershipOffer;
+            membershipOrder.DateCreated = new DateTime(2000, 1, 1);
+
+            var newOrderId = _orderRepository.SaveMembershipOrder(membershipOrder);
+
+            Assert.That(newOrderId, Is.Not.EqualTo(0));
+            Assert.That(newOrderId, Is.EqualTo(membershipOrder.OrderId));
+
+            var database = Database.Open("IntegrationTests.Properties.Settings.TDDWithMVCConnectionString");
+
+            var insertedOrder = database.QuerySingle("SELECT * FROM MembershipOrder WHERE Id = @0", newOrderId);
+
+            Assert.AreEqual(insertedOrder.FirstName, "firstname");
+            Assert.AreEqual(insertedOrder.LastName, "lastname");
+            Assert.AreEqual(insertedOrder.EmailAddress, "test@foo.com");
+            Assert.AreEqual(insertedOrder.DateOfBirth, new DateTime(1980, 1, 1));
+            Assert.AreEqual(insertedOrder.CreditCardNumber, "4444444444444");
+            Assert.AreEqual(insertedOrder.CreditCardTypeCode, CreditCardType.Visa.Code);
+            Assert.AreEqual(insertedOrder.MembershipOfferId, membershipOffer.Id);
+            Assert.AreEqual(insertedOrder.DateCreated, new DateTime(2000, 1, 1));
         }
     }
 }

@@ -1,14 +1,14 @@
 namespace Core.Domain
 {
-    public class CreditCard
+    public class CreditCardType
     {
-        public static CreditCard Visa = new CreditCard("VISA", "Visa");
-        public static CreditCard AmericanExpress = new CreditCard("AMEX", "American Express");
+        public static CreditCardType Visa = new CreditCardType("VISA", "Visa");
+        public static CreditCardType AmericanExpress = new CreditCardType("AMEX", "American Express");
 
         private string _code;
         private string _name;
 
-        private CreditCard(
+        private CreditCardType(
             string code,
             string name)
         {
@@ -26,7 +26,7 @@ namespace Core.Domain
             get { return _code; }
         }
 
-        public static CreditCard[] GetAll()
+        public static CreditCardType[] GetAll()
         {
             return new []
             {

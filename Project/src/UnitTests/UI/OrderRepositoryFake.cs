@@ -6,11 +6,6 @@ namespace UnitTests.UI
 {
     public class OrderRepositoryFake : IOrderRepository
     {
-        public MembershipOffer[] GetAllMembershipOffers()
-        {
-            return null;
-        }
-
         public MembershipOffer[] GetAllActiveMembershipOffers()
         {
             var membershipOffer000 = new MembershipOffer();
@@ -55,9 +50,9 @@ namespace UnitTests.UI
             return membershipOffers;
         }
 
-        public MembershipOffer[] SerachMembershipOffers(string searchString)
+        public int SaveMembershipOrder(MembershipOrder membershipOrder)
         {
-            return null;
+
         }
     }
 }

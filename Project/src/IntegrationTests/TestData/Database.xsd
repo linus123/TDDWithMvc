@@ -40,11 +40,65 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="MembershipOrder" msprop:Generator_TableClassName="MembershipOrderDataTable" msprop:Generator_TableVarName="tableMembershipOrder" msprop:Generator_TablePropName="MembershipOrder" msprop:Generator_RowDeletingName="MembershipOrderRowDeleting" msprop:Generator_UserTableName="MembershipOrder" msprop:Generator_RowChangingName="MembershipOrderRowChanging" msprop:Generator_RowEvHandlerName="MembershipOrderRowChangeEventHandler" msprop:Generator_RowDeletedName="MembershipOrderRowDeleted" msprop:Generator_RowEvArgName="MembershipOrderRowChangeEvent" msprop:Generator_RowChangedName="MembershipOrderRowChanged" msprop:Generator_RowClassName="MembershipOrderRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="EmailAddress" msprop:Generator_ColumnVarNameInTable="columnEmailAddress" msprop:Generator_ColumnPropNameInRow="EmailAddress" msprop:Generator_ColumnPropNameInTable="EmailAddressColumn" msprop:Generator_UserColumnName="EmailAddress">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="64" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateOfBirth" msprop:Generator_ColumnVarNameInTable="columnDateOfBirth" msprop:Generator_ColumnPropNameInRow="DateOfBirth" msprop:Generator_ColumnPropNameInTable="DateOfBirthColumn" msprop:Generator_UserColumnName="DateOfBirth" type="xs:dateTime" />
+              <xs:element name="CreditCardNumber" msprop:Generator_ColumnVarNameInTable="columnCreditCardNumber" msprop:Generator_ColumnPropNameInRow="CreditCardNumber" msprop:Generator_ColumnPropNameInTable="CreditCardNumberColumn" msprop:Generator_UserColumnName="CreditCardNumber">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="32" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CreditCardTypeCode" msprop:Generator_ColumnVarNameInTable="columnCreditCardTypeCode" msprop:Generator_ColumnPropNameInRow="CreditCardTypeCode" msprop:Generator_ColumnPropNameInTable="CreditCardTypeCodeColumn" msprop:Generator_UserColumnName="CreditCardTypeCode">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="MembershipOfferId" msprop:Generator_ColumnVarNameInTable="columnMembershipOfferId" msprop:Generator_ColumnPropNameInRow="MembershipOfferId" msprop:Generator_ColumnPropNameInTable="MembershipOfferIdColumn" msprop:Generator_UserColumnName="MembershipOfferId" type="xs:int" />
+              <xs:element name="DateCreated" msprop:Generator_ColumnVarNameInTable="columnDateCreated" msprop:Generator_ColumnPropNameInRow="DateCreated" msprop:Generator_ColumnPropNameInTable="DateCreatedColumn" msprop:Generator_UserColumnName="DateCreated" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:MembershipOffer" />
       <xs:field xpath="mstns:Id" />
     </xs:unique>
+    <xs:unique name="MembershipOrder_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MembershipOrder" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
   </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_MembershipOrder_MembershipOffer" msdata:parent="MembershipOffer" msdata:child="MembershipOrder" msdata:parentkey="Id" msdata:childkey="MembershipOfferId" msprop:Generator_UserChildTable="MembershipOrder" msprop:Generator_ChildPropName="GetMembershipOrderRows" msprop:Generator_ParentPropName="MembershipOfferRow" msprop:Generator_UserRelationName="FK_MembershipOrder_MembershipOffer" msprop:Generator_RelationVarName="relationFK_MembershipOrder_MembershipOffer" msprop:Generator_UserParentTable="MembershipOffer" />
+    </xs:appinfo>
+  </xs:annotation>
 </xs:schema>
