@@ -4,10 +4,6 @@ namespace Core.Domain
 {
     public class MembershipOrder
     {
-        public MembershipOrder()
-        {
-        }
-
         public int OrderId { get; set; }
         public MembershipOffer MembershipOffer { get; set; }
         public string FirstName { get; set; }

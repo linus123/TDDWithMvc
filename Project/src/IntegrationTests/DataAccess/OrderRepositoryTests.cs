@@ -53,6 +53,21 @@ namespace IntegrationTests.DataAccess
         }
 
         [Test]
+        public void GetMembershipOfferByIdShouldReturnValidOffer()
+        {
+            var membershipOfferById = _orderRepository.GetMembershipOfferById(1);
+
+            Assert.That(membershipOfferById.Id, Is.EqualTo(1));
+            Assert.That(membershipOfferById.InternalName, Is.EqualTo("MEM53158813"));
+            Assert.That(membershipOfferById.ExternalName, Is.EqualTo("Highfaluting Membership 1 Year"));
+            Assert.That(membershipOfferById.DiscountPrice, Is.EqualTo(59));
+            Assert.That(membershipOfferById.Price, Is.EqualTo(99));
+            Assert.That(membershipOfferById.IsActive, Is.EqualTo(true));
+            Assert.That(membershipOfferById.TermInMonths, Is.EqualTo(12));
+            Assert.That(membershipOfferById.TermInYears, Is.EqualTo(1));
+        }
+
+        [Test]
         public void SaveMembershipOrderShouldPersistAnOrderAndReturnTheId()
         {
             var membershipOffer = new MembershipOffer();

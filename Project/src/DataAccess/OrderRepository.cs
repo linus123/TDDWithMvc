@@ -44,20 +44,28 @@ SELECT SCOPE_IDENTITY() AS [Id]
                         {
                             var membershipOffer = new MembershipOffer();
 
-                            membershipOffer.Id = membershipOfferData.Id;
-                            membershipOffer.InternalName = membershipOfferData.InternalName;
-                            membershipOffer.ExternalName = membershipOfferData.ExternalName;
-                            membershipOffer.DiscountPrice = membershipOfferData.DiscountPrice;
-                            membershipOffer.Price = membershipOfferData.Price;
-                            membershipOffer.IsActive = membershipOfferData.IsActive;
-                            membershipOffer.TermInMonths = membershipOfferData.TermInMonths;
-                            membershipOffer.TermInYears = membershipOfferData.TermInYears;
+                            MapQueryToMembershipOffer(membershipOffer, (object) membershipOfferData);
 
                             membershipOffers.Add(membershipOffer);
                         }
                     });
 
             return membershipOffers.ToArray();
+        }
+
+        public MembershipOffer GetMembershipOfferById(int id)
+        {
+            var membershipOffer = new MembershipOffer();
+
+            RunDatabaseOperation(
+                database =>
+                {
+                    var membershipOfferData = database.QuerySingle("SELECT * FROM MembershipOffer WHERE Id = @0", id);
+
+                    MapQueryToMembershipOffer(membershipOffer, membershipOfferData);
+                });
+
+            return membershipOffer;
         }
 
         public int SaveMembershipOrder(MembershipOrder membershipOrder)
@@ -84,7 +92,19 @@ SELECT SCOPE_IDENTITY() AS [Id]
             return membershipOrder.OrderId;
         }
 
-        public void RunDatabaseOperation(
+        private void MapQueryToMembershipOffer(MembershipOffer membershipOffer, dynamic membershipOfferData)
+        {
+            membershipOffer.Id = membershipOfferData.Id;
+            membershipOffer.InternalName = membershipOfferData.InternalName;
+            membershipOffer.ExternalName = membershipOfferData.ExternalName;
+            membershipOffer.DiscountPrice = membershipOfferData.DiscountPrice;
+            membershipOffer.Price = membershipOfferData.Price;
+            membershipOffer.IsActive = membershipOfferData.IsActive;
+            membershipOffer.TermInMonths = membershipOfferData.TermInMonths;
+            membershipOffer.TermInYears = membershipOfferData.TermInYears;
+        }
+
+        private void RunDatabaseOperation(
             Action<Database> operationAction)
         {
             var database = Database.Open("IntegrationTests.Properties.Settings.TDDWithMVCConnectionString");

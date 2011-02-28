@@ -6,6 +6,9 @@ namespace UnitTests.UI
 {
     public class OrderRepositoryFake : IOrderRepository
     {
+        public bool SaveMembershipOrderWasCalled { get; set;}
+        public MembershipOrder SaveMembershipOrderArgumentMembershipOrder { get; set; }
+
         public MembershipOffer[] GetAllActiveMembershipOffers()
         {
             var membershipOffer000 = new MembershipOffer();
@@ -50,9 +53,34 @@ namespace UnitTests.UI
             return membershipOffers;
         }
 
-        public int SaveMembershipOrder(MembershipOrder membershipOrder)
+        public MembershipOffer GetMembershipOfferById(int id)
         {
+            if (id == 1)
+            {
+                var membershipOffer000 = new MembershipOffer();
 
+                membershipOffer000.Id = 1;
+                membershipOffer000.InternalName = "MEM53158813";
+                membershipOffer000.ExternalName = "Highfaluting Membership 1 Year";
+                membershipOffer000.DiscountPrice = 59;
+                membershipOffer000.Price = 99;
+                membershipOffer000.IsActive = true;
+                membershipOffer000.TermInMonths = 12;
+                membershipOffer000.TermInYears = 1;
+
+                return membershipOffer000;
+            }
+
+            return null;
+        }
+
+        public int SaveMembershipOrder(
+            MembershipOrder membershipOrder)
+        {
+            SaveMembershipOrderWasCalled = true;
+            SaveMembershipOrderArgumentMembershipOrder = membershipOrder;
+
+            return 10;
         }
     }
 }

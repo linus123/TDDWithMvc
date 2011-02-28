@@ -10,13 +10,15 @@ namespace UnitTests.UI.Controllers
     public class HomeControllerTests
     {
         private HomeController _homeController;
+        private OrderRepositoryFake _orderRepositoryFake;
 
         [SetUp]
         public void Setup()
         {
+            _orderRepositoryFake = new OrderRepositoryFake();
 
             _homeController = new HomeController(
-                new OrderRepositoryFake());
+                _orderRepositoryFake);
         }
 
         [Test]
@@ -73,6 +75,36 @@ namespace UnitTests.UI.Controllers
             Assert.That(indexModel.CreditCardTypes[2].Value, Is.EqualTo("AMEX"));
             Assert.That(indexModel.CreditCardTypes[2].Text, Is.EqualTo("American Express"));
             Assert.That(indexModel.CreditCardTypes[2].Selected, Is.EqualTo(false));
+        }
+
+        [Test]
+        public void IndexShouldSaveTheOrderWhenTheModelIsValid()
+        {
+            var indexModel = new IndexModel();
+
+            indexModel.FirstName = "firstname";
+            indexModel.LastName = "lastname";
+            indexModel.EmailAddress = "test@test.com";
+            indexModel.DateOfBirth = new DateTime(2000, 1, 10);
+            indexModel.CreditCardNumber = "9999999999";
+            indexModel.SelectedCreditCardType = "VISA";
+            indexModel.SelectedMembershipOption = "1";
+
+            _homeController.Index(indexModel);
+
+            Assert.That(_orderRepositoryFake.SaveMembershipOrderWasCalled, Is.True);
+            Assert.That(_orderRepositoryFake.SaveMembershipOrderArgumentMembershipOrder, Is.Not.Null);
+
+            var membershipOrder = _orderRepositoryFake.SaveMembershipOrderArgumentMembershipOrder;
+
+            Assert.That(indexModel.FirstName, Is.EqualTo(membershipOrder.FirstName));
+            Assert.That(indexModel.LastName, Is.EqualTo(membershipOrder.LastName));
+            Assert.That(indexModel.EmailAddress, Is.EqualTo(membershipOrder.EmailAddress));
+            Assert.That(indexModel.DateOfBirth, Is.EqualTo(membershipOrder.DateOfBirth));
+            Assert.That(indexModel.CreditCardNumber, Is.EqualTo(membershipOrder.CreditCardNumber));
+            Assert.That(indexModel.SelectedCreditCardType, Is.EqualTo(membershipOrder.CreditCardType.Code));
+            Assert.That(indexModel.SelectedMembershipOption, Is.EqualTo(membershipOrder.MembershipOffer.Id.ToString()));
+
         }
 
         [Test]

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using Core.Domain;
 using Core.Services;
 using DataAccess;
 using UI.Helpers;
@@ -23,6 +24,8 @@ namespace UI.Controllers
         public HomeController(
             IOrderRepository orderRepository)
         {
+            _orderRepository = orderRepository;
+
             _indexModelHydrator = new IndexModelHydrator(
                 orderRepository);
         }
@@ -46,6 +49,24 @@ namespace UI.Controllers
 
                 return View(indexModel);
             }
+
+            var membershipOrderFactory = new MembershipOrderFactory();
+
+            var membershipOrder = membershipOrderFactory.CreateMembershipOrder();
+
+            membershipOrder.FirstName = indexModel.FirstName;
+            membershipOrder.LastName = indexModel.LastName;
+            membershipOrder.EmailAddress = indexModel.EmailAddress;
+
+            if (indexModel.DateOfBirth.HasValue)
+                membershipOrder.DateOfBirth = (DateTime) indexModel.DateOfBirth;
+
+            membershipOrder.CreditCardNumber = indexModel.CreditCardNumber;
+            membershipOrder.CreditCardType = CreditCardType.FromCode(indexModel.SelectedCreditCardType);
+            membershipOrder.MembershipOffer =
+                _orderRepository.GetMembershipOfferById(Convert.ToInt32(indexModel.SelectedMembershipOption));
+
+            _orderRepository.SaveMembershipOrder(membershipOrder);
 
             return RedirectToAction("OrderSaved");
         }

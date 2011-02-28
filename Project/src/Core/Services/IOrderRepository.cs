@@ -6,6 +6,8 @@ namespace Core.Services
     {
         MembershipOffer[] GetAllActiveMembershipOffers();
 
+        MembershipOffer GetMembershipOfferById(int id);
+
         int SaveMembershipOrder(MembershipOrder membershipOrder);
     }
 }

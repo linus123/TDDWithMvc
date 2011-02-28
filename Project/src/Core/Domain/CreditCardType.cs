@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Core.Domain
 {
     public class CreditCardType
@@ -33,6 +35,17 @@ namespace Core.Domain
                 Visa,
                 AmericanExpress
             };
+        }
+
+        public static CreditCardType FromCode(
+            string code)
+        {
+            var creditCardTypes = GetAll();
+
+            var cardTypes = creditCardTypes.Where(x => x.Code == code)
+                .SingleOrDefault();
+
+            return cardTypes;
         }
     }
 }
