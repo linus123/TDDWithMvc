@@ -6,7 +6,17 @@ using UI.Models;
 
 namespace UI.Helpers.Mappers
 {
-    public class IndexModelMapper
+    public interface IIndexModelMapper
+    {
+        MembershipOptionModel[] MapDomainToModels(
+            MembershipOffer[] membershipOffers);
+
+        MembershipOrder GetMembershipOrderForIndexModel(
+            IndexModel indexModel,
+            IOrderRepository orderRepository);
+    }
+
+    public class IndexModelMapper : IIndexModelMapper
     {
         public MembershipOptionModel[] MapDomainToModels(
             MembershipOffer[] membershipOffers)
@@ -27,7 +37,7 @@ namespace UI.Helpers.Mappers
             return membershipOptionModels.ToArray();
         }
 
-        public MembershipOrder GetIndexModelForOrder(
+        public MembershipOrder GetMembershipOrderForIndexModel(
             IndexModel indexModel,
             IOrderRepository orderRepository)
         {

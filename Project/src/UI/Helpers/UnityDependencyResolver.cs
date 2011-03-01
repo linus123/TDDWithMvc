@@ -20,10 +20,10 @@ namespace UI.Helpers
         public void SetupDependencies()
         {
             _unityContainer.RegisterType<IOrderRepository, OrderRepository>();
-            _unityContainer.RegisterType<OrderRepository>();
-            _unityContainer.RegisterType<IndexModelMapper>();
-            _unityContainer.RegisterType<CreditCardListItemMapper>();
-            _unityContainer.RegisterType<IndexModelRepository>();
+            _unityContainer.RegisterType<IOrderRepository, OrderRepository>();
+            _unityContainer.RegisterType<IIndexModelMapper, IndexModelMapper>();
+            _unityContainer.RegisterType<ICreditCardListItemMapper, CreditCardListItemMapper>();
+            _unityContainer.RegisterType<IIndexModelRepository, IndexModelRepository>();
         }
 
         public object GetService(Type serviceType)

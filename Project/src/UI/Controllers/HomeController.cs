@@ -7,10 +7,10 @@ namespace UI.Controllers
 {
     public class HomeController : Controller
     {
-        private IndexModelRepository _indexModelRepository;
+        private IIndexModelRepository _indexModelRepository;
 
         public HomeController(
-            IndexModelRepository indexModelRepository)
+            IIndexModelRepository indexModelRepository)
         {
             _indexModelRepository = indexModelRepository;
         }

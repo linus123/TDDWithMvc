@@ -4,7 +4,13 @@ using Core.Domain;
 
 namespace UI.Helpers.Mappers
 {
-    public class CreditCardListItemMapper
+    public interface ICreditCardListItemMapper
+    {
+        SelectListItem[] MapCreditCardsToListItems(
+            CreditCardType[] creditCardsType);
+    }
+
+    public class CreditCardListItemMapper : ICreditCardListItemMapper
     {
         public SelectListItem[] MapCreditCardsToListItems(
             CreditCardType[] creditCardsType)

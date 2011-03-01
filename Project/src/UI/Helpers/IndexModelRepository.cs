@@ -6,7 +6,16 @@ using UI.Models;
 
 namespace UI.Helpers
 {
-    public class IndexModelRepository
+    public interface IIndexModelRepository
+    {
+        void HydrateIndexModel(
+            IndexModel indexModel);
+
+        void SaveIndexModel(
+            IndexModel indexModel);
+    }
+
+    public class IndexModelRepository : IIndexModelRepository
     {
         private IOrderRepository _orderRepository;
         private IndexModelMapper _indexModelMapper;
@@ -34,7 +43,7 @@ namespace UI.Helpers
         public void SaveIndexModel(
             IndexModel indexModel)
         {
-            var membershipOrder = _indexModelMapper.GetIndexModelForOrder(indexModel, _orderRepository);
+            var membershipOrder = _indexModelMapper.GetMembershipOrderForIndexModel(indexModel, _orderRepository);
 
             _orderRepository.SaveMembershipOrder(membershipOrder);            
         }
