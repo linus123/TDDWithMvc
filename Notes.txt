@@ -25,3 +25,18 @@ Assume Fixed Database
 	Ndbunit
 
 Explain what a unit test is... Is not an integration test
+
+Basics of MVC
+Optimizes for Code Reading
+Refactoring a large part
+NuGet - Moq, NUnit, Unity, NDBUnit
+New Features of MVC that we will be looking at NuGet Razor, DI
+Describe the Process of Testing - See Ken Beck's Book
+
+Keep your Controllers Thin
+
+Further Study
+	Test Driven By Example
+	Clean Code
+	MVC 2 in Action
+	MVC 3 in Action
