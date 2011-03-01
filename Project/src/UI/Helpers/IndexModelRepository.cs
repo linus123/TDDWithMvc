@@ -10,10 +10,16 @@ namespace UI.Helpers
     {
         private IOrderRepository _orderRepository;
         private IndexModelMapper _indexModelMapper;
+        private CreditCardListItemMapper _creditCardListItemMapper;
 
         public IndexModelRepository(
-            IOrderRepository orderRepository)
+            IOrderRepository orderRepository,
+            IndexModelMapper indexModelMapper,
+            CreditCardListItemMapper creditCardListItemMapper)
         {
+            _creditCardListItemMapper = creditCardListItemMapper;
+            _indexModelMapper = indexModelMapper;
+
             _orderRepository = orderRepository;
         }
 
@@ -21,14 +27,13 @@ namespace UI.Helpers
             IndexModel indexModel)
         {
             indexModel.MembershipOptions = GetMembershipOptionModels();
+
             indexModel.CreditCardTypes = GetCreditCardTypes();
         }
 
         public void SaveIndexModel(
             IndexModel indexModel)
         {
-            _indexModelMapper = new IndexModelMapper();
-
             var membershipOrder = _indexModelMapper.GetIndexModelForOrder(indexModel, _orderRepository);
 
             _orderRepository.SaveMembershipOrder(membershipOrder);            
@@ -38,8 +43,7 @@ namespace UI.Helpers
         {
             var creditCards = CreditCardType.GetAll();
 
-            var creditCardListItemMapper = new CreditCardListItemMapper();
-            var listItems = creditCardListItemMapper.MapCreditCardsToListItems(creditCards);
+            var listItems = _creditCardListItemMapper.MapCreditCardsToListItems(creditCards);
 
             return listItems;
         }
@@ -48,8 +52,7 @@ namespace UI.Helpers
         {
             var allActiveMembershipOffers = _orderRepository.GetAllActiveMembershipOffers();
 
-            var indexModelMapper = new IndexModelMapper();
-            return indexModelMapper.MapDomainToModels(allActiveMembershipOffers);
+            return _indexModelMapper.MapDomainToModels(allActiveMembershipOffers);
         }
     }
 }
