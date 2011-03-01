@@ -10,7 +10,7 @@ namespace UI.Models
 
         [Required]
         [Display(Name = "Membership Option")]
-        public string SelectedMembershipOption { get; set; }
+        public int SelectedMembershipOption { get; set; }
 
         [Required]
         [DataType(DataType.Text)]

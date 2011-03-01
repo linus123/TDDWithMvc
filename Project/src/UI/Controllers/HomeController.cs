@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Mvc;
-using Core.Domain;
 using Core.Services;
 using DataAccess;
 using UI.Helpers;
@@ -10,14 +9,14 @@ namespace UI.Controllers
 {
     public class HomeController : Controller
     {
-        private IndexModelHydrator _indexModelHydrator;
+        private IndexModelRepository _indexModelRepository;
         private IOrderRepository _orderRepository;
 
         public HomeController()
         {
             _orderRepository = new OrderRepository();
 
-            _indexModelHydrator = new IndexModelHydrator(
+            _indexModelRepository = new IndexModelRepository(
                 _orderRepository);
         }
 
@@ -26,7 +25,7 @@ namespace UI.Controllers
         {
             _orderRepository = orderRepository;
 
-            _indexModelHydrator = new IndexModelHydrator(
+            _indexModelRepository = new IndexModelRepository(
                 orderRepository);
         }
 
@@ -34,7 +33,7 @@ namespace UI.Controllers
         {
             var indexModel = new IndexModel();
 
-            _indexModelHydrator.HydrateIndexModel(indexModel);
+            _indexModelRepository.HydrateIndexModel(indexModel);
 
             return View(indexModel);
         }
@@ -45,31 +44,16 @@ namespace UI.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _indexModelHydrator.HydrateIndexModel(indexModel);
+                _indexModelRepository.HydrateIndexModel(indexModel);
 
                 return View(indexModel);
             }
 
-            var membershipOrderFactory = new MembershipOrderFactory();
-
-            var membershipOrder = membershipOrderFactory.CreateMembershipOrder();
-
-            membershipOrder.FirstName = indexModel.FirstName;
-            membershipOrder.LastName = indexModel.LastName;
-            membershipOrder.EmailAddress = indexModel.EmailAddress;
-
-            if (indexModel.DateOfBirth.HasValue)
-                membershipOrder.DateOfBirth = (DateTime) indexModel.DateOfBirth;
-
-            membershipOrder.CreditCardNumber = indexModel.CreditCardNumber;
-            membershipOrder.CreditCardType = CreditCardType.FromCode(indexModel.SelectedCreditCardType);
-            membershipOrder.MembershipOffer =
-                _orderRepository.GetMembershipOfferById(Convert.ToInt32(indexModel.SelectedMembershipOption));
-
-            _orderRepository.SaveMembershipOrder(membershipOrder);
+            _indexModelRepository.SaveIndexModel(indexModel);
 
             return RedirectToAction("OrderSaved");
         }
+
 
         public ViewResult OrderSaved()
         {

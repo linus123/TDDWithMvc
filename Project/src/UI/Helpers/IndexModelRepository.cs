@@ -1,17 +1,17 @@
 using System.Web.Mvc;
 using Core.Domain;
 using Core.Services;
-using DataAccess;
 using UI.Helpers.Mappers;
 using UI.Models;
 
 namespace UI.Helpers
 {
-    public class IndexModelHydrator
+    public class IndexModelRepository
     {
         private IOrderRepository _orderRepository;
+        private IndexModelMapper _indexModelMapper;
 
-        public IndexModelHydrator(
+        public IndexModelRepository(
             IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
@@ -22,6 +22,16 @@ namespace UI.Helpers
         {
             indexModel.MembershipOptions = GetMembershipOptionModels();
             indexModel.CreditCardTypes = GetCreditCardTypes();
+        }
+
+        public void SaveIndexModel(
+            IndexModel indexModel)
+        {
+            _indexModelMapper = new IndexModelMapper();
+
+            var membershipOrder = _indexModelMapper.GetIndexModelForOrder(indexModel, _orderRepository);
+
+            _orderRepository.SaveMembershipOrder(membershipOrder);            
         }
 
         private SelectListItem[] GetCreditCardTypes()

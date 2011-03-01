@@ -88,7 +88,7 @@ namespace UnitTests.UI.Controllers
             indexModel.DateOfBirth = new DateTime(2000, 1, 10);
             indexModel.CreditCardNumber = "9999999999";
             indexModel.SelectedCreditCardType = "VISA";
-            indexModel.SelectedMembershipOption = "1";
+            indexModel.SelectedMembershipOption = 1;
 
             _homeController.Index(indexModel);
 
@@ -103,8 +103,7 @@ namespace UnitTests.UI.Controllers
             Assert.That(indexModel.DateOfBirth, Is.EqualTo(membershipOrder.DateOfBirth));
             Assert.That(indexModel.CreditCardNumber, Is.EqualTo(membershipOrder.CreditCardNumber));
             Assert.That(indexModel.SelectedCreditCardType, Is.EqualTo(membershipOrder.CreditCardType.Code));
-            Assert.That(indexModel.SelectedMembershipOption, Is.EqualTo(membershipOrder.MembershipOffer.Id.ToString()));
-
+            Assert.That(indexModel.SelectedMembershipOption, Is.EqualTo(membershipOrder.MembershipOffer.Id));
         }
 
         [Test]

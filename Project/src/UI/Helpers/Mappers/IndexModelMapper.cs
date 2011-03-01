@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using Core.Domain;
+using Core.Services;
 using UI.Models;
 
 namespace UI.Helpers.Mappers
@@ -23,7 +25,30 @@ namespace UI.Helpers.Mappers
             }
 
             return membershipOptionModels.ToArray();
-            
         }
+
+        public MembershipOrder GetIndexModelForOrder(
+            IndexModel indexModel,
+            IOrderRepository orderRepository)
+        {
+            var membershipOrderFactory = new MembershipOrderFactory();
+
+            var membershipOrder = membershipOrderFactory.CreateMembershipOrder();
+
+            membershipOrder.FirstName = indexModel.FirstName;
+            membershipOrder.LastName = indexModel.LastName;
+            membershipOrder.EmailAddress = indexModel.EmailAddress;
+
+            if (indexModel.DateOfBirth.HasValue)
+                membershipOrder.DateOfBirth = (DateTime)indexModel.DateOfBirth;
+
+            membershipOrder.CreditCardNumber = indexModel.CreditCardNumber;
+            membershipOrder.CreditCardType = CreditCardType.FromCode(indexModel.SelectedCreditCardType);
+            membershipOrder.MembershipOffer =
+                orderRepository.GetMembershipOfferById(indexModel.SelectedMembershipOption);
+
+            return membershipOrder;
+        }
+
     }
 }

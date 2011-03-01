@@ -16,6 +16,5 @@ namespace UnitTests.Core.Domain
 
             Assert.That(membershipOrder.DateCreated, Is.GreaterThanOrEqualTo(DateTime.Now));
         }
-
     }
 }
