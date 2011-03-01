@@ -2,6 +2,8 @@ using System;
 using System.Web.Mvc;
 using NUnit.Framework;
 using UI.Controllers;
+using UI.Helpers;
+using UI.Helpers.Mappers;
 using UI.Models;
 
 namespace UnitTests.UI.Controllers
@@ -18,7 +20,10 @@ namespace UnitTests.UI.Controllers
             _orderRepositoryFake = new OrderRepositoryFake();
 
             _homeController = new HomeController(
-                _orderRepositoryFake);
+                new IndexModelRepository(
+                    _orderRepositoryFake,
+                    new IndexModelMapper(),
+                    new CreditCardListItemMapper()));
         }
 
         [Test]

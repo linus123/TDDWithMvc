@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
-using Core.Services;
-using DataAccess;
 using UI.Helpers;
-using UI.Helpers.Mappers;
 using UI.Models;
 
 namespace UI.Controllers
@@ -11,33 +8,11 @@ namespace UI.Controllers
     public class HomeController : Controller
     {
         private IndexModelRepository _indexModelRepository;
-        private IOrderRepository _orderRepository;
-        private IndexModelMapper _indexModelMapper;
-        private CreditCardListItemMapper _creditCardListItemMapper;
-
-        public HomeController()
-        {
-            _orderRepository = new OrderRepository();
-            _indexModelMapper = new IndexModelMapper();
-            _creditCardListItemMapper = new CreditCardListItemMapper();
-
-            _indexModelRepository = new IndexModelRepository(
-                _orderRepository,
-                _indexModelMapper,
-                _creditCardListItemMapper);
-        }
 
         public HomeController(
-            IOrderRepository orderRepository)
+            IndexModelRepository indexModelRepository)
         {
-            _orderRepository = orderRepository;
-            _indexModelMapper = new IndexModelMapper();
-            _creditCardListItemMapper = new CreditCardListItemMapper();
-
-            _indexModelRepository = new IndexModelRepository(
-                orderRepository,
-                _indexModelMapper,
-                _creditCardListItemMapper);
+            _indexModelRepository = indexModelRepository;
         }
 
         public ViewResult Index()
@@ -64,7 +39,6 @@ namespace UI.Controllers
 
             return RedirectToAction("OrderSaved");
         }
-
 
         public ViewResult OrderSaved()
         {
