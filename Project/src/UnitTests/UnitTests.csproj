@@ -58,6 +58,9 @@
     <Compile Include="Core\Domain\MembershipOrderFactoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UI\Controllers\HomeControllerTests.cs" />
+    <Compile Include="UI\Helpers\IndexModelRepositoryTests.cs" />
+    <Compile Include="UI\Helpers\Mappers\CreditCardListItemMapperTests.cs" />
+    <Compile Include="UI\Helpers\Mappers\IndexModelMapperTests.cs" />
     <Compile Include="UI\OrderRepositoryFake.cs" />
   </ItemGroup>
   <ItemGroup>

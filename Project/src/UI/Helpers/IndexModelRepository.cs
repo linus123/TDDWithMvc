@@ -18,13 +18,13 @@ namespace UI.Helpers
     public class IndexModelRepository : IIndexModelRepository
     {
         private IOrderRepository _orderRepository;
-        private IndexModelMapper _indexModelMapper;
-        private CreditCardListItemMapper _creditCardListItemMapper;
+        private IIndexModelMapper _indexModelMapper;
+        private ICreditCardListItemMapper _creditCardListItemMapper;
 
         public IndexModelRepository(
             IOrderRepository orderRepository,
-            IndexModelMapper indexModelMapper,
-            CreditCardListItemMapper creditCardListItemMapper)
+            IIndexModelMapper indexModelMapper,
+            ICreditCardListItemMapper creditCardListItemMapper)
         {
             _creditCardListItemMapper = creditCardListItemMapper;
             _indexModelMapper = indexModelMapper;
@@ -43,7 +43,9 @@ namespace UI.Helpers
         public void SaveIndexModel(
             IndexModel indexModel)
         {
-            var membershipOrder = _indexModelMapper.GetMembershipOrderForIndexModel(indexModel, _orderRepository);
+            var membershipOrder = _indexModelMapper.GetMembershipOrderForIndexModel(
+                indexModel,
+                _orderRepository);
 
             _orderRepository.SaveMembershipOrder(membershipOrder);            
         }
